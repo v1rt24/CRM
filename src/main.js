@@ -4,6 +4,9 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 
+import Vuelidate from 'vuelidate';
+Vue.use(Vuelidate);
+
 import 'material-design-icons-iconfont';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';

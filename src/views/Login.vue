@@ -34,13 +34,15 @@
 
       <p class="center">
         Нет аккаунта?
-        <a href="/">Зарегистрироваться</a>
+        <router-link :to="{name: 'Registration'}">Зарегистрироваться</router-link>
       </p>
     </div>
   </form>
 </template>
 
 <script>
+import { email, required } from 'vuelidate/lib/validators';
+
 export default {
   name: 'Login',
 };
