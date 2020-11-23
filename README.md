@@ -1,4 +1,4 @@
-# vuecli.loc
+# CRM система на Vue
 
 ## Project setup
 ```
