@@ -44,7 +44,7 @@
             </div>
 
             <form>
-              <div class="input-field" >
+              <div class="input-field">
                 <select>
                   <option>Category</option>
                 </select>
@@ -80,8 +80,8 @@
 
 <script>
 export default {
-name: "Categories"
-}
+  name: 'Categories',
+};
 </script>
 
 <style scoped>

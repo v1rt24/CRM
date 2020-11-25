@@ -41,6 +41,7 @@
 
 <script>
 import dataFilter from '@/filters/dataFilter';
+import { mapActions } from 'vuex';
 
 let dropdown = null;
 let observeDataTime = null;
@@ -51,7 +52,12 @@ export default {
     customTime: new Date(),
   }),
   methods: {
+    ...mapActions('auth', {
+      CLEAR_USER: 'logoutUser',
+    }),
     logout () {
+      this.CLEAR_USER();
+
       this.$router.push({
         name: 'Login',
         query: {
