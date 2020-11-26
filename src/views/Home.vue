@@ -3,57 +3,63 @@
     <div class="page-title">
       <h3>Счёт</h3>
 
-      <button class="btn waves-effect waves-light btn-small">
+      <button class="btn waves-effect waves-light btn-small" @click="loadData">
         <i class="material-icons">refresh</i>
       </button>
     </div>
 
-    <div class="row">
-      <div class="col s12 m6 l4">
-        <div class="card light-blue bill-card">
-          <div class="card-content white-text">
-            <span class="card-title">Счет в валюте</span>
+    <Preloader
+        v-if="loader"
+    />
 
-            <p class="currency-line">
-              <span>12.0 Р</span>
-            </p>
-          </div>
-        </div>
-      </div>
+    <div
+        class="row"
+        v-if="!loader"
+    >
+      <HomeBill
+          :rates="currency.rates"
+      />
 
-      <div class="col s12 m6 l8">
-        <div class="card orange darken-3 bill-card">
-          <div class="card-content white-text">
-            <div class="card-header">
-              <span class="card-title">Курс валют</span>
-            </div>
-            <table>
-              <thead>
-              <tr>
-                <th>Валюта</th>
-                <th>Курс</th>
-                <th>Дата</th>
-              </tr>
-              </thead>
-
-              <tbody>
-              <tr>
-                <td>руб</td>
-                <td>12121</td>
-                <td>12.12.12</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <HomeCurrency
+          :rates="currency.rates"
+          :date="currency.date"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import HomeBill from '@/components/Home/HomeBill';
+import HomeCurrency from '@/components/Home/HomeCurrency';
+import { mapActions } from 'vuex';
+import messages from '@/utils/messages';
+
 export default {
   name: 'Home',
+  data: () => ({
+    loader: true,
+    currency: null,
+  }),
+  methods: {
+    ...mapActions('home', {
+      FETCH_CURRENCY: 'fetchCurrency',
+    }),
+    async loadData () {
+      try {
+        this.loader = true;
+        this.currency = await this.FETCH_CURRENCY();
+        this.loader = false;
+      }
+      catch (error) {
+        this.$error(messages[error.code]);
+        console.log(error);
+      }
+    },
+  },
+  components: {HomeCurrency, HomeBill},
+  mounted () {
+    this.loadData();
+  },
 };
 </script>
 

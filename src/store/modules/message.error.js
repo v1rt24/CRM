@@ -10,7 +10,7 @@ export default {
     setError (state, error) {
       state.error = error;
     },
-    ClearError (state) {
+    clearError (state) {
       state.error = null;
     },
   },

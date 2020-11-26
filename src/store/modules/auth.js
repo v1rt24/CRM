@@ -1,7 +1,6 @@
 import { server } from '@/store/server';
 import {
   setLocalStorage,
-  getLocalStorage,
   clearLocalStorage,
 } from '@/utils/localStorageData';
 
@@ -23,7 +22,7 @@ export default {
   },
   actions: {
     async registrationUser ({commit}, {email, password, name, bill}) {
-      commit('error/ClearError', null, {root: true});
+      commit('error/clearError', null, {root: true});
 
       try {
         const formData = new FormData();
@@ -48,6 +47,7 @@ export default {
         setLocalStorage('token', resData.user_id);
 
         commit('setUser', {
+          id: resData.user_id,
           name,
           bill,
         });
@@ -58,7 +58,7 @@ export default {
       }
     },
     async authUser ({commit}, {email, password}) {
-      commit('error/ClearError', null, {root: true});
+      commit('error/clearError', null, {root: true});
 
       try {
         const formData = new FormData();
@@ -80,7 +80,7 @@ export default {
 
         setLocalStorage('token', resData.user_id);
 
-        commit('setUser', {name: resData.name, bill: resData.bill});
+        commit('setUser', {id: resData.user_id, name: resData.name, bill: resData.bill});
       }
       catch (error) {
         commit('error/setError', error.message, {root: true});
@@ -103,7 +103,8 @@ export default {
           await Promise.reject(resData);
         }
 
-        commit('setUser', {name: resData.data.name, bill: resData.data.bill});
+        commit('setUser',
+          {id, name: resData.data.name, bill: resData.data.bill});
       }
       catch (error) {
         console.log(error);

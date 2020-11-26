@@ -16,7 +16,7 @@
               href="#"
               data-target="dropdown"
           >
-            USER NAME
+            {{ USER.name }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -40,8 +40,7 @@
 </template>
 
 <script>
-import dataFilter from '@/filters/dataFilter';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 let dropdown = null;
 let observeDataTime = null;
@@ -66,8 +65,10 @@ export default {
       });
     },
   },
-  filters: {
-    dataFilter,
+  computed: {
+    ...mapGetters('auth', {
+      USER: 'getUser',
+    }),
   },
   mounted () {
     dropdown = M.Dropdown.init(this.$refs.dropdown);

@@ -6,14 +6,20 @@ import store from './store';
 
 import Vuelidate from 'vuelidate';
 import Messages from '@/utils/message.plagin';
-
-Vue.use(Vuelidate);
-Vue.use(Messages);
+import Preloader from '@/components/app/Preloader';
+import DataFilter from '@/filters/dataFilter';
+import PriceFilter from '@/filters/price.filter';
 
 import 'material-design-icons-iconfont';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
 import './assets/css/index.css';
+
+Vue.use(Vuelidate);
+Vue.use(Messages);
+Vue.component('Preloader', Preloader);
+Vue.filter('dataFilter', DataFilter);
+Vue.filter('priceFilter', PriceFilter);
 
 Vue.config.productionTip = false;
 
