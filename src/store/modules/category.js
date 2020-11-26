@@ -2,9 +2,7 @@ import { server } from '@/store/server';
 
 export default {
   namespaced: true,
-  state: {
-    categories: [],
-  },
+  state: {},
   getters: {},
   mutations: {},
   actions: {
@@ -40,6 +38,45 @@ export default {
       }
       catch (error) {
         commit('error/setError', error, {root: true});
+        throw error;
+      }
+    },
+    async fetchCategories ({commit, rootGetters}) {
+      commit('error/clearError', null, {root: true});
+
+      try {
+        const user_id = (rootGetters['auth/getUser']).id;
+
+        const res = await fetch(`${server}/category/${user_id}`);
+
+        return await res.json();
+      }
+      catch (error) {
+        throw error;
+      }
+    },
+    async updateCategory ({rootGetters}, {id, namecat, limitmoney}) {
+      try {
+        const user_id = (rootGetters['auth/getUser']).id;
+
+        const res = await fetch(`${server}/category/${user_id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            id,
+            namecat,
+            limitmoney,
+          }),
+        });
+
+        const dataRes = await res.json();
+
+        if (!dataRes.status) {
+          await Promise.reject(dataRes.message);
+        }
+
+        return dataRes.message;
+      }
+      catch (error) {
         throw error;
       }
     },

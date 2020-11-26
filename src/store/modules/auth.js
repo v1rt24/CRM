@@ -103,11 +103,11 @@ export default {
           await Promise.reject(resData);
         }
 
-        commit('setUser',
-          {id, name: resData.data.name, bill: resData.data.bill});
+        commit('setUser', {id, name: resData.data.name, bill: resData.data.bill});
       }
       catch (error) {
         console.log(error);
+        throw error;
       }
     },
   },
