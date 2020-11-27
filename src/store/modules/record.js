@@ -55,5 +55,23 @@ export default {
         throw error;
       }
     },
+    async fetchRecords ({rootGetters}) {
+      try {
+        const user_id = rootGetters['auth/getUser'].id;
+
+        const res = await fetch(`${server}/getRecords/${user_id}`);
+
+        const dataRes = await res.json();
+
+        if (!dataRes.status) {
+          await Promise.reject(dataRes);
+        }
+
+        return dataRes.data;
+      }
+      catch (error) {
+        throw error;
+      }
+    },
   },
 };

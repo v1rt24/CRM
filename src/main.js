@@ -9,6 +9,7 @@ import Messages from '@/utils/message.plagin';
 import Preloader from '@/components/app/Preloader';
 import DataFilter from '@/filters/dataFilter';
 import PriceFilter from '@/filters/price.filter';
+import tooltipDirective from '@/directives/tooltip.derective';
 
 import 'material-design-icons-iconfont';
 import 'materialize-css/dist/css/materialize.min.css';
@@ -20,6 +21,7 @@ Vue.use(Messages);
 Vue.component('Preloader', Preloader);
 Vue.filter('dataFilter', DataFilter);
 Vue.filter('priceFilter', PriceFilter);
+Vue.directive('tooltip', tooltipDirective);
 
 Vue.config.productionTip = false;
 

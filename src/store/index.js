@@ -6,6 +6,7 @@ import error from '@/store/modules/message.error';
 import home from '@/store/modules/home';
 import category from '@/store/modules/category';
 import record from '@/store/modules/record';
+import planning from '@/store/modules/planning';
 
 Vue.use(Vuex);
 
@@ -20,5 +21,6 @@ export default new Vuex.Store({
     home,
     category,
     record,
+    planning,
   },
 });

@@ -20,6 +20,7 @@
 
       <div class="fixed-action-btn" v-if="isFloating">
         <router-link
+            v-tooltip="'Добавить новую запись'" data-position="left"
             class="btn-floating btn-large blue"
             :to="{name: 'Record'}"
         >
