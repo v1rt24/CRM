@@ -2,9 +2,6 @@ import { server } from '@/store/server';
 
 export default {
   namespaced: true,
-  state: {},
-  getters: {},
-  mutations: {},
   actions: {
     async createCategories ({commit, rootGetters}, {namecat, limitmoney}) {
       commit('error/clearError', null, {root: true});

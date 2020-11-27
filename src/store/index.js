@@ -5,6 +5,7 @@ import auth from '@/store/modules/auth';
 import error from '@/store/modules/message.error';
 import home from '@/store/modules/home';
 import category from '@/store/modules/category';
+import record from '@/store/modules/record';
 
 Vue.use(Vuex);
 
@@ -18,5 +19,6 @@ export default new Vuex.Store({
     error,
     home,
     category,
+    record,
   },
 });
