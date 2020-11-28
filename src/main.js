@@ -10,6 +10,7 @@ import Preloader from '@/components/app/Preloader';
 import DataFilter from '@/filters/dataFilter';
 import PriceFilter from '@/filters/price.filter';
 import tooltipDirective from '@/directives/tooltip.derective';
+import Paginate from 'vuejs-paginate';
 
 import 'material-design-icons-iconfont';
 import 'materialize-css/dist/css/materialize.min.css';
@@ -22,6 +23,7 @@ Vue.component('Preloader', Preloader);
 Vue.filter('dataFilter', DataFilter);
 Vue.filter('priceFilter', PriceFilter);
 Vue.directive('tooltip', tooltipDirective);
+Vue.component('Paginate', Paginate);
 
 Vue.config.productionTip = false;
 

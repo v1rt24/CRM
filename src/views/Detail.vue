@@ -2,20 +2,20 @@
   <div>
     <div>
       <div class="breadcrumb-wrap">
-        <a href="/history" class="breadcrumb">История</a>
+        <router-link :to="{name: 'History'}" class="breadcrumb">История</router-link>
         <a class="breadcrumb">
-          Расход
+          {{ rec.typeName }}
         </a>
       </div>
       <div class="row">
         <div class="col s12 m6">
-          <div class="card red">
+          <div class="card" :class="rec.typeClass">
             <div class="card-content white-text">
-              <p>Описание:</p>
-              <p>Сумма:</p>
-              <p>Категория:</p>
+              <p>Описание: {{ rec.description }}</p>
+              <p>Сумма: {{ rec.amount }}</p>
+              <p>Категория: {{ rec.nameCat }}</p>
 
-              <small>12.12.12</small>
+              <small>{{ rec.time | dataFilter }}</small>
             </div>
           </div>
         </div>
@@ -26,8 +26,14 @@
 
 <script>
 export default {
-name: "Detail"
-}
+  name: 'Detail',
+  props: {
+    rec: {
+      type: Object,
+      required: true,
+    },
+  },
+};
 </script>
 
 <style scoped>

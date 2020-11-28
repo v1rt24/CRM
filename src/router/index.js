@@ -21,6 +21,7 @@ const routes = [
     name: 'Detail',
     meta: {layout: 'Main', title: 'Детали'},
     component: () => import(/* webpackChunkName: "detail" */ '../views/Detail'),
+    props: true,
   },
   {
     path: '/history',
